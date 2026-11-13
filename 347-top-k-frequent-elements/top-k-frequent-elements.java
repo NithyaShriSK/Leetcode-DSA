@@ -9,12 +9,17 @@ class Solution {
                 m.put(nums[i],1);
             }
         }
-        List<Integer> li = new ArrayList<>(m.keySet());
-        Collections.sort(li, (a, b) -> m.get(b) - m.get(a));
+        PriorityQueue<Integer> pq = new PriorityQueue<>(
+            (a, b) -> m.get(b) - m.get(a)
+        );
+        for (int key : m.keySet()) {
+            pq.add(key);
+        }
         int[] res = new int[k];
         for (int i = 0; i < k; i++) {
-            res[i] = li.get(i);
+            res[i] = pq.poll();
         }
         return res;
     }
+    
 }
